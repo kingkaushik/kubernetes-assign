@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: write-service
+spec:
+  ports:
+    - name: http
+      port: 4000
+      targetPort: 4000
+  selector:
+    app: write-container
+  type: LoadBalancer

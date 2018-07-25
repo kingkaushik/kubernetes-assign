@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: read-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: read-container
+    spec:
+      volumes:
+      - name: task-pv-storage
+        persistentVolumeClaim:
+         claimName: task-pv-claim2
+      containers:
+      - name: read-container
+        image: chkaushik/rerepo
+        volumeMounts:
+        - mountPath: /data
+          name: task-pv-storage
